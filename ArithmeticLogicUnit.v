@@ -1,4 +1,4 @@
-module ArithmeticLogicUnit(input [0:31]readData1, input [0:31]readData2, input ALUControl);
+module ArithmeticLogicUnit(input [31:0]readData1, input [31:0]readData2, input ALUControl);
 
 
 endmodule 

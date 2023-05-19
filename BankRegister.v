@@ -1,4 +1,4 @@
-module BankRegister(input clk, input PC, input write, input reset, input jal,
+module BankRegister(input clk, input PC, input writeData, input reset, input jal,
 							input [4:0]rd, input [4:0]rs, input [4:0]rt,	
 							output [31:0] out_rs, output [31:0]out_rt, output [31:0]out_rd, input[31:0] data
 							);
@@ -21,7 +21,7 @@ module BankRegister(input clk, input PC, input write, input reset, input jal,
 				end
 			end 
 			
-		else if (write == 1) 
+		else if (writeData == 1) 
 			begin 
 			registers[rd] <= data;
 				
