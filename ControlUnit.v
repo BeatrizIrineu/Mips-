@@ -1,10 +1,11 @@
 module ControlUnit(
   input [5:0] opcode,
+  input [5:0] funct,
   output reg RegDst,
   output reg Branch,
   output reg MemRead,
   output reg MemtoReg,
-  output reg [2:0] ALUOp,
+  output reg [1:0] ALUOp,
   output reg MemWrite,
   output reg ALUSrc,
   output reg RegWrite
@@ -12,71 +13,181 @@ module ControlUnit(
 
   always @(*)
     case (opcode)
-      // add, sub, mult, div, set less than, or, and, not, shift left logical, shift right logical
+	 
+      // R-format or jr (jump register)
       6'b000000:  
-        begin
-          RegDst    <= 1;
-          Branch    <= 0;
-          MemRead   <= 0;
-          MemtoReg  <= 0;
-          ALUOp     <= 3'b000;  // ALUOp for add, sub, mult, div, set less than
-          MemWrite  <= 0;
-          ALUSrc    <= 0;
-          RegWrite  <= 1;
-        end
-      
-      // addI, load immediate
-      6'b001000:
-        begin
-          RegDst    <= 0;
-          Branch    <= 0;
-          MemRead   <= 0;
-          MemtoReg  <= 0;
-          ALUOp     <= 3'b000;  // ALUOp for addI
-          MemWrite  <= 0;
-          ALUSrc    <= 1;
-          RegWrite  <= 1;
-        end
-      
-      // lw, sw
+			case(funct)
+				//jr (jump register)
+				6'b001000:
+					begin
+					 RegDst    <= 0; // Indiferente
+					 Branch    <= 1;
+					 MemRead   <= 0;
+					 MemtoReg  <= 0; // Indiferente
+					 ALUOp     <= 2'b00;  
+					 MemWrite  <= 0;
+					 ALUSrc    <= 0;
+					 RegWrite  <= 0;
+				  end
+			  //R-format
+			  default:
+				  begin
+					 RegDst    <= 1;
+					 Branch    <= 0;
+					 MemRead   <= 0;
+					 MemtoReg  <= 0;
+					 ALUOp     <= 2'b10;  
+					 MemWrite  <= 0;
+					 ALUSrc    <= 0;
+					 RegWrite  <= 1;
+				  end
+			endcase
+		
+		// lw
       6'b100011:
         begin
           RegDst    <= 0;
           Branch    <= 0;
           MemRead   <= 1;
-          MemtoReg  <= 6'b100;  // MemtoReg for lw
-          ALUOp     <= 3'b000;  // ALUOp for lw, sw
-          MemWrite  <= 1;
+          MemtoReg  <= 1;  
+          ALUOp     <= 2'b00;  
+          MemWrite  <= 0;
           ALUSrc    <= 1;
           RegWrite  <= 1;
         end
-      
-      // br.eq, br.neq
-      6'b010101, 6'b010100:
+	
+		// sw
+      6'b101011:
         begin
-          RegDst    <= 0;
-          Branch    <= 1;
+          RegDst    <= 0; //Indiferente
+          Branch    <= 0;
           MemRead   <= 0;
-          MemtoReg  <= 0;
-          ALUOp     <= 3'b010;  // ALUOp for set less than
-          MemWrite  <= 0;
-          ALUSrc    <= 0;
+          MemtoReg  <= 0; //Indiferente
+          ALUOp     <= 2'b00; 
+          MemWrite  <= 1;
+          ALUSrc    <= 1;
           RegWrite  <= 0;
         end
-      
-      // jump, jump register, jump and link
-      6'b000010, 6'b000000, 6'b001111:
-        begin
-          RegDst    <= 0;
-          Branch    <= 1;
-          MemRead   <= 0;
-          MemtoReg  <= 0;
-          ALUOp     <= 3'b000;  
-          MemWrite  <= 0;
-          ALUSrc    <= 0;
-          RegWrite  <= 0;
-        end
-      
+		  
+		// beq and bne
+		6'b000100, 6'b000101:
+		  begin
+			 RegDst    <= 0; // Indiferente
+			 Branch    <= 1;
+			 MemRead   <= 0;
+			 MemtoReg  <= 0; // Indiferente
+			 ALUOp     <= 2'b01;  
+			 MemWrite  <= 0;
+			 ALUSrc    <= 0;
+			 RegWrite  <= 0;
+		  end
+
+		  
+		 //addI
+      6'b001000: 
+		  begin
+			 RegDst    <= 0; // Indiferente
+			 Branch    <= 0;
+			 MemRead   <= 0;
+			 MemtoReg  <= 0; // Indiferente
+			 ALUOp     <= 2'b00;  
+			 MemWrite  <= 0;
+			 ALUSrc    <= 1;
+			 RegWrite  <= 1;
+		  end
+		  
+		 //subI
+      6'b001010: 
+		  begin
+			 RegDst    <= 0; // Indiferente
+			 Branch    <= 0;
+			 MemRead   <= 0;
+			 MemtoReg  <= 0; // Indiferente
+			 ALUOp     <= 2'b00;  
+			 MemWrite  <= 0;
+			 ALUSrc    <= 1;
+			 RegWrite  <= 1;
+		  end
+		  
+		// load immediate
+		6'b001111:
+		  begin
+			 RegDst    <= 0; // Indiferente
+			 Branch    <= 0;
+			 MemRead   <= 1;
+			 MemtoReg  <= 0; 
+			 ALUOp     <= 2'b00;  
+			 MemWrite  <= 0;
+			 ALUSrc    <= 1;
+			 RegWrite  <= 1;
+		  end
+			 
+      // j (jump)
+		6'b000010:
+		  begin
+			 RegDst    <= 0; // Indiferente
+			 Branch    <= 1;
+			 MemRead   <= 0;
+			 MemtoReg  <= 0; // Indiferente
+			 ALUOp     <= 2'b00;  
+			 MemWrite  <= 0;
+			 ALUSrc    <= 0;
+			 RegWrite  <= 0;
+		  end
+
+
+		// jal (jump and link)
+		6'b000011:
+		  begin
+			 RegDst    <= 0; // Indiferente
+			 Branch    <= 1;
+			 MemRead   <= 0;
+			 MemtoReg  <= 0; // Indiferente
+			 ALUOp     <= 2'b00;  
+			 MemWrite  <= 0;
+			 ALUSrc    <= 0;
+			 RegWrite  <= 1;
+		  end
+
+      // mult (multiplicação)
+		6'b011000:
+		  begin
+			 RegDst    <= 0; // Indiferente
+			 Branch    <= 0;
+			 MemRead   <= 0;
+			 MemtoReg  <= 0; // Indiferente
+			 ALUOp     <= 2'b00;  
+			 MemWrite  <= 0;
+			 ALUSrc    <= 0;
+			 RegWrite  <= 0;
+		  end
+
+		// div (divisão)
+		6'b011010:
+		  begin
+			 RegDst    <= 0; // Indiferente
+			 Branch    <= 0;
+			 MemRead   <= 0;
+			 MemtoReg  <= 0; // Indiferente
+			 ALUOp     <= 2'b01;  
+			 MemWrite  <= 0;
+			 ALUSrc    <= 0;
+			 RegWrite  <= 0;
+		  end
+
+		// not (negação lógica)
+		6'b011100:
+		  begin
+			 RegDst    <= 0; // Indiferente
+			 Branch    <= 0;
+			 MemRead   <= 0;
+			 MemtoReg  <= 0; // Indiferente
+			 ALUOp     <= 2'b10;  
+			 MemWrite  <= 0;
+			 ALUSrc    <= 0;
+			 RegWrite  <= 1;
+		  end
+
       default:
         begin
           // Instrução não reconhecida
@@ -84,11 +195,12 @@ module ControlUnit(
           Branch    <= 0;
           MemRead   <= 0;
           MemtoReg  <= 0;
-          ALUOp     <= 3'b000;
+          ALUOp     <= 2'b00;
           MemWrite  <= 0;
           ALUSrc    <= 0;
           RegWrite  <= 0;
         end
+		  
     endcase
 
 endmodule

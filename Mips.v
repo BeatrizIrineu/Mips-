@@ -6,21 +6,15 @@ module Mips (
 		input writeData
 );
 
-	wire [31:0]adress_pc_out, adress_pc_in, instruction;
-	
-	wire [31:0]out_rs, out_rt, out_rd; 
-	
-	wire [31:0]data;
-	
-	wire [31:0]offset;
-	
-	wire [31:0]read_data_2;
-	
-	wire [4:0]writeReg;
-	
 	wire RegDst, Branch, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite;
 	
 	wire [2:0] ALUOp;
+	
+	wire [3:0] ALUCtrl;
+	
+	wire [4:0]writeReg;
+	
+	wire [31:0] adress_pc_out, adress_pc_in, instruction, offset, out_rs, out_rt, out_rd, data, read_data_2, ALU_result;
 	
 	PCCounter PCCounter_inst(.clk(CLOCK_50),.pause(pause),.reset(reset),.adress_pc_in(adress_pc_in),.adress_pc_out(adress_pc_out));
 	
@@ -32,11 +26,15 @@ module Mips (
 	
 	Mux_N #(4) mux_1(.flag(RegDst), .input_1(instruction[20:16]), .input_2(instruction[15:11]), .out(writeReg));
 	
-   BankRegister BankRegister_inst(.clk(CLOCK_50), .PC(adress_pc_out), .writeData(writeData), .reset(reset), .jal(jal),  .rs(instruction[25:21]), .rt(instruction[20:16]), .rd(WriteReg), .out_rs(out_rs), .out_rt(out_rt), .out_rd(out_rd), .data(data));
+   BankRegister BankRegister_inst(.clk(CLOCK_50), .PC(adress_pc_out), .RegWirte(RegWirte), .reset(reset), .jal(jal),  .rs(instruction[25:21]), .rt(instruction[20:16]), .rd(WriteReg), .out_rs(out_rs), .out_rt(out_rt), .out_rd(out_rd), .data(data));
 	
 	Mux_N mux_2(.flag(ALUSrc), .input_1(out_rt), .input_2(offset), .out(read_data_2));
+	
 	//signExtend();
-	//	ArithmeticLogicUnit ArithmeticLogicUnit_inst();
+	
+	ALUControl(.funct(instruction[5:0]), .shamt(instruction[10:6]), .ALUOp(ALUOp), .ALUCtrl(ALUCtrl));
+	
+	ArithmeticLogicUnit ArithmeticLogicUnit_inst(.read_data_1(out_rs), .read_data_2(read_data_2), .ALUCtrl(ALUCtrl), .shamt(instruction[10:6]), .ALU_result(ALU_result));
 	
 	
 endmodule
