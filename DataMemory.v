@@ -1,12 +1,12 @@
 // Quartus Prime Verilog Template
 // Single port RAM with single read/write address 
 
-module single_port_ram 
+module DataMemory 
 
 (
-	input [31:0] data,
+	input [31:0] write_data,
 	input [5:0] address,
-	input Write, clk,
+	input MemWrite, MemRead, clk,
 	output [31:0] read_data
 );
 
@@ -17,8 +17,8 @@ module single_port_ram
 	always @ (posedge clk)
 	begin
 		// Write
-		if (Write)
-			ram[address] <= data;	
+		if (MemWrite)
+			ram[address] <= write_data;	
 	end
 		
 	// Continuous assignment implies read returns NEW data.

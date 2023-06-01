@@ -1,6 +1,9 @@
-module signExtend #(parameter N=31)
-						(input [15:0] case1, input [25:0] case2, input [31:0] case3, output [N:0] sign_extended);
+module signExtend(
+  input [15:0] sign_to_extend,
+  output [31:0] signal_extended
+);
 
-//  assign extended_value = {{16{input_value[15]}}, input_value};
-
- endmodule
+	assign signal_extended = {16'b0, sign_to_extend};
+		
+		
+endmodule

@@ -2,7 +2,7 @@ module ArithmeticLogicUnit
 (
 input [31:0] read_data_1, 
 input [31:0] read_data_2, 
-input ALUCtrl,
+input [3:0] ALUCtrl,
 input shamt,
 output reg [31:0] ALU_result, 
 output Zero
