@@ -20,7 +20,7 @@ always @(*) begin
 			ALUCtrl <= 4'b0111;
 		6'b011000: //mult
 			ALUCtrl <= 4'b1111;
-		6'b011000: //div
+		6'b011010: //div
 			ALUCtrl <= 4'b0011;
 		// Shift instructions
 		6'b000000: // shift left logical, shift right logical, not
@@ -32,10 +32,15 @@ always @(*) begin
 				default: // not
 				  ALUCtrl <= 4'b1001;
 			endcase
-	  
 	  default:
 		 ALUCtrl <= 4'b0000;
 	endcase
+	
+	case (ALUOp)
+		2'b11:
+			ALUCtrl <= 4'b0010;
+	endcase
+	
 end
 
 endmodule

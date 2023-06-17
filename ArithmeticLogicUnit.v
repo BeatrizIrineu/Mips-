@@ -9,17 +9,23 @@ output Zero
 );
 
 	reg [63:0] HiLo;
-	always @(*) 
+	always @(*) begin 
 		case (ALUCtrl)
 			// add, addI
-			4'b0010, 4'b0010: ALU_result <= read_data_1 + read_data_2;
+			4'b0010: ALU_result <= read_data_1 + read_data_2;
 			
 			// sub, subI
-			4'b0110, 4'b0110: ALU_result <= read_data_1 - read_data_2;
+			4'b0110: ALU_result <= read_data_1 - read_data_2;
 			
 			// or
-			4'b0001: ALU_result <= read_data_1 | read_data_2;
-			
+			4'b0001: 
+				begin 
+					if ((read_data_1 + read_data_2) > 1) 
+						ALU_result <= 1;
+					else 
+						ALU_result <= 0;
+				end
+				
 			// and
 			4'b0000: ALU_result <= read_data_1 & read_data_2;
 				
@@ -39,7 +45,7 @@ output Zero
 			4'b1111:
 				begin
 				  HiLo <= read_data_1 * read_data_2;
-				  ALU_result <= HiLo[63:32];
+				  ALU_result <= HiLo[31:0];
 				end
 			
 			 // div
@@ -47,15 +53,16 @@ output Zero
 				begin
 					if (read_data_2 != 0) begin 
 					  HiLo <= read_data_1 / read_data_2;
-					  ALU_result <= HiLo[63:32];
+					  ALU_result <= HiLo[31:0];
 					end
 					else ALU_result <= 1;
 				end
 			
 		  default:
 			 ALU_result <= 0;
-	endcase
+		endcase
 	
+	end
 	assign Zero = (ALU_result==0);
 
 endmodule 

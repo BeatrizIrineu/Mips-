@@ -50,7 +50,7 @@ module ControlUnit(
           Branch    <= 0;
           MemRead   <= 1;
           MemtoReg  <= 2'b01;  
-          ALUOp     <= 2'b00;  
+          ALUOp     <= 2'b11;  
           MemWrite  <= 0;
           ALUSrc    <= 1;
           RegWrite  <= 1;

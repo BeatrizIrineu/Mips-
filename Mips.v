@@ -39,7 +39,7 @@ module Mips (
 	
 	ArithmeticLogicUnit ArithmeticLogicUnit_inst(.read_data_1(out_rs), .read_data_2(read_data_2), .ALUCtrl(ALUCtrl), .shamt(instruction[10:6]), .ALU_result(ALU_result));
 	
-	DataMemory DataMemory_inst(.write_data(read_data_2), .address(ALU_result[6:2]), .MemWrite(MemWrite), .MemRead(MemRead), .clk(CLOCK_50), .read_data(read_data));
+	DataMemory DataMemory_inst(.write_data(read_data_2), .address(ALU_result[31:0]), .MemWrite(MemWrite), .MemRead(MemRead), .clk(CLOCK_50), .read_data(read_data));
 	
 	Mux_N #(31,1) mux_3(.flag(MemtoReg), .input_1(ALU_result), .input_2(read_data), .input_3(signal_extended), .mux_output(write_data));
 	

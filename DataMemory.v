@@ -5,7 +5,7 @@ module DataMemory
 
 (
 	input [31:0] write_data,
-	input [5:0] address,
+	input [31:0] address,
 	input MemWrite, MemRead, clk,
 	output [31:0] read_data
 );
