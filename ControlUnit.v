@@ -1,48 +1,66 @@
 module ControlUnit(
   input [5:0] opcode,
   input [5:0] funct,
-  output reg [1:0] RegDst,
+  output reg RegDst,
   output reg Branch,
   output reg MemRead,
   output reg [1:0] MemtoReg,
   output reg [1:0] ALUOp,
   output reg MemWrite,
   output reg ALUSrc,
-  output reg RegWrite
+  output reg RegWrite, 
+  output reg Jump,
+  output reg Jal
 );
 
   always @(*)
     case (opcode)
 	 
-      // R-format or jr (jump register)
+      // R-format
       6'b000000:  
-			case(funct)
-				//jr (jump register)
-				6'b001000:
-					begin
-					 RegDst    <= 0; // Indiferente
-					 Branch    <= 1;
-					 MemRead   <= 0;
-					 MemtoReg  <= 2'b00; // Indiferente
-					 ALUOp     <= 2'b00;  
-					 MemWrite  <= 0;
-					 ALUSrc    <= 0;
-					 RegWrite  <= 0;
-				  end
-			  //R-format
-			  default:
-				  begin
-					 RegDst    <= 1;
-					 Branch    <= 0;
-					 MemRead   <= 0;
-					 MemtoReg  <= 2'b00;
-					 ALUOp     <= 2'b10;  
-					 MemWrite  <= 0;
-					 ALUSrc    <= 0;
-					 RegWrite  <= 1;
-				  end
-			endcase
+			begin
+				RegDst    <= 1;
+				Branch    <= 0;
+				MemRead   <= 0;
+				MemtoReg  <= 2'b00;
+				ALUOp     <= 2'b10;  
+				MemWrite  <= 0;
+				ALUSrc    <= 0;
+				RegWrite  <= 1;
+				Jump      <= 0;
+				Jal       <= 0;
+			end
 		
+		//Jump adress
+		6'b000010:  
+			begin
+				RegDst    <= 0; 
+				Branch    <= 0;
+				MemRead   <= 0;
+				MemtoReg  <= 2'b00; 
+				ALUOp     <= 2'b00;  
+				MemWrite  <= 0;
+				ALUSrc    <= 0;
+				RegWrite  <= 0;
+				Jump      <= 1;
+				Jal       <= 0;
+			end
+				
+		//Jump and Link
+		6'b000011:  
+			begin
+				RegDst    <= 0; 
+				Branch    <= 0;
+				MemRead   <= 0;
+				MemtoReg  <= 2'b00; 
+				ALUOp     <= 2'b00;  
+				MemWrite  <= 0;
+				ALUSrc    <= 1;
+				RegWrite  <= 0;
+				Jump      <= 0;
+				Jal       <= 1;
+			end
+			
 		// lw
       6'b100011:
         begin
@@ -54,6 +72,8 @@ module ControlUnit(
           MemWrite  <= 0;
           ALUSrc    <= 1;
           RegWrite  <= 1;
+			 Jump      <= 0;
+			 Jal       <= 0;
         end
 	
 		// sw
@@ -63,10 +83,12 @@ module ControlUnit(
           Branch    <= 0;
           MemRead   <= 0;
           MemtoReg  <= 2'b00; //Indiferente
-          ALUOp     <= 2'b00; 
+          ALUOp     <= 2'b11;
           MemWrite  <= 1;
           ALUSrc    <= 1;
           RegWrite  <= 0;
+			 Jump      <= 0;
+			 Jal       <= 0;
         end
 		  
 		// beq and bne
@@ -80,6 +102,8 @@ module ControlUnit(
 			 MemWrite  <= 0;
 			 ALUSrc    <= 0;
 			 RegWrite  <= 0;
+			 Jump      <= 0;
+			 Jal       <= 0;
 		  end
 
 		  
@@ -94,6 +118,8 @@ module ControlUnit(
 			 MemWrite  <= 0;
 			 ALUSrc    <= 1;
 			 RegWrite  <= 1;
+			 Jump      <= 0;
+			 Jal       <= 0;
 		  end
 		  
 		 //subI
@@ -107,9 +133,11 @@ module ControlUnit(
 			 MemWrite  <= 0;
 			 ALUSrc    <= 1;
 			 RegWrite  <= 1;
+			 Jump      <= 0;
+			 Jal       <= 0;
 		  end
 		  
-			// lui
+		// lui
 		6'b001111:
 		  begin
 			  RegDst    <= 0; // Indiferente
@@ -120,6 +148,8 @@ module ControlUnit(
 			  MemWrite  <= 0;
 			  ALUSrc    <= 0; // Indiferente
 			  RegWrite  <= 1;
+			  Jump      <= 0;
+			  Jal       <= 0;
 		  end
 
 		// ori
@@ -133,6 +163,8 @@ module ControlUnit(
 			  MemWrite  <= 0;
 			  ALUSrc    <= 1;
 			  RegWrite  <= 1;
+			  Jump      <= 0;
+			  Jal       <= 0;
 		  end
 
       // j (jump)
@@ -146,6 +178,8 @@ module ControlUnit(
 			 MemWrite  <= 0;
 			 ALUSrc    <= 0;
 			 RegWrite  <= 0;
+			 Jump      <= 0;
+			 Jal       <= 0;
 		  end
 
 
@@ -160,6 +194,8 @@ module ControlUnit(
 			 MemWrite  <= 0;
 			 ALUSrc    <= 0;
 			 RegWrite  <= 1;
+			 Jump      <= 0;
+			 Jal       <= 0;
 		  end
 
       // mult (multiplicação)
@@ -173,6 +209,8 @@ module ControlUnit(
 			 MemWrite  <= 0;
 			 ALUSrc    <= 0;
 			 RegWrite  <= 0;
+			 Jump      <= 0;
+			 Jal       <= 0;
 		  end
 
 		// div (divisão)
@@ -186,6 +224,8 @@ module ControlUnit(
 			 MemWrite  <= 0;
 			 ALUSrc    <= 0;
 			 RegWrite  <= 0;
+			 Jump      <= 0;
+			 Jal       <= 0;
 		  end
 
 		// not (negação lógica)
@@ -199,6 +239,8 @@ module ControlUnit(
 			 MemWrite  <= 0;
 			 ALUSrc    <= 0;
 			 RegWrite  <= 1;
+			 Jump      <= 0;
+			 Jal       <= 0;
 		  end
 
       default:
@@ -212,6 +254,8 @@ module ControlUnit(
           MemWrite  <= 0;
           ALUSrc    <= 0;
           RegWrite  <= 0;
+			 Jump      <= 0;
+			 Jal       <= 0;
         end
 		  
     endcase

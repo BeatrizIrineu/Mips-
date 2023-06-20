@@ -33,13 +33,14 @@ always @(*) begin
 				  ALUCtrl <= 4'b1001;
 			endcase
 	  default:
-		 ALUCtrl <= 4'b0000;
+		 ALUCtrl <= 4'b1100;
 	endcase
 	
 	case (ALUOp)
 		2'b11:
-			ALUCtrl <= 4'b0010;
+			ALUCtrl <= 4'b1010;
 	endcase
+	
 	
 end
 

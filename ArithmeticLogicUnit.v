@@ -1,11 +1,14 @@
 module ArithmeticLogicUnit
-(
-input [31:0] read_data_1, 
-input [31:0] read_data_2, 
-input [3:0] ALUCtrl,
-input shamt,
-output reg [31:0] ALU_result, 
-output Zero
+	(
+	input Jal, 
+	input [31:0] pc,
+	input [4:0] source,
+	input [31:0] read_data_1, 
+	input [31:0] read_data_2, 
+	input [3:0] ALUCtrl,
+	input shamt,
+	output reg [31:0] ALU_result, 
+	output Zero
 );
 
 	reg [63:0] HiLo;
@@ -13,6 +16,8 @@ output Zero
 		case (ALUCtrl)
 			// add, addI
 			4'b0010: ALU_result <= read_data_1 + read_data_2;
+			
+			4'b1010: ALU_result <= source + read_data_2;
 			
 			// sub, subI
 			4'b0110: ALU_result <= read_data_1 - read_data_2;
@@ -61,6 +66,11 @@ output Zero
 		  default:
 			 ALU_result <= 0;
 		endcase
+		
+		if (Jal)
+			begin
+				ALU_result <= pc + (read_data_2 << 2);
+			end
 	
 	end
 	assign Zero = (ALU_result==0);
