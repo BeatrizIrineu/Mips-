@@ -4,7 +4,7 @@
 module DataMemory 
 
 (
-	input [31:0] write_data,
+	input [31:0] write_data_ram,
 	input [31:0] address,
 	input MemWrite, MemRead, clk,
 	output [31:0] read_data
@@ -18,7 +18,7 @@ module DataMemory
 	begin
 		// Write
 		if (MemWrite)
-			ram[address] <= write_data;	
+			ram[address] <= write_data_ram;	
 	end
 		
 	// Continuous assignment implies read returns NEW data.

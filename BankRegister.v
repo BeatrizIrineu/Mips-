@@ -1,6 +1,6 @@
-module BankRegister(input clk, input PC, input RegWrite, input reset, input jal,
-							input [4:0]rd, input [4:0]rs, input [4:0]rt,	
-							output [31:0] out_rs, output [31:0]out_rt, output [31:0]out_rd, input[31:0] write_data
+module BankRegister(input clk, input reset,input RegWrite, input Jal,
+							input [4:0]source, input [4:0] target, input [4:0]target_or_destination,
+							output [31:0] read_register_1, output [31:0]read_register_2,  input[31:0] write_data, input[31:0] pc
 							);
 	
 	
@@ -9,8 +9,11 @@ module BankRegister(input clk, input PC, input RegWrite, input reset, input jal,
 	integer i;
 	reg [31:0]registers [31:0];
 	
-	always @(posedge clk) 
-	begin	
+	assign read_register_1 = registers[source];
+	assign read_register_2 = registers[target];
+	
+	always @(posedge clk)
+	begin
 		if (reset == 1) 
 		begin 
 			for (i = 0; i < 32; i=i+1) 
@@ -18,19 +21,14 @@ module BankRegister(input clk, input PC, input RegWrite, input reset, input jal,
 				registers[i] <= 32'b0;
 			end
 		end 
-			
-		else if (RegWrite == 1) 
-		begin 
-			registers[rd] <= write_data;	
-			if (jal == 1)
-			begin
-				registers[31] <= PC;
-			end
-		end			
-	end
 		
-	assign out_rs = registers[rs];
-	assign out_rt = registers[rt];
-	assign out_rd = registers[rd];
+		else if (RegWrite) registers[target_or_destination] <= write_data;
+		
+		else if (Jal) registers[31] <= pc;
+	end
+	
+	
 
 endmodule
+
+	
