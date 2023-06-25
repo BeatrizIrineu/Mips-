@@ -23,7 +23,7 @@ module ControlUnit(
 				Branch    <= 0;
 				MemRead   <= 0;
 				MemtoReg  <= 2'b00;
-				ALUOp     <= 2'b10;  
+				ALUOp     <= 2'b00;  
 				MemWrite  <= 0;
 				ALUSrc    <= 0;
 				RegWrite  <= 1;
@@ -31,6 +31,21 @@ module ControlUnit(
 				Jal       <= 0;
 			end
 		
+		// addI
+		6'b001000:  
+			begin
+				RegDst    <= 0;
+				Branch    <= 0;
+				MemRead   <= 0;
+				MemtoReg  <= 2'b00;
+				ALUOp     <= 2'b00;  
+				MemWrite  <= 0;
+				ALUSrc    <= 1;
+				RegWrite  <= 1;
+				Jump      <= 0;
+				Jal       <= 0;
+			end
+			
 		//Jump adress
 		6'b000010:  
 			begin
@@ -53,7 +68,7 @@ module ControlUnit(
 				Branch    <= 0;
 				MemRead   <= 0;
 				MemtoReg  <= 2'b00; 
-				ALUOp     <= 2'b00;  
+				ALUOp     <= 2'b01;  
 				MemWrite  <= 0;
 				ALUSrc    <= 1;
 				RegWrite  <= 0;
@@ -91,51 +106,38 @@ module ControlUnit(
 			 Jal       <= 0;
         end
 		  
-		// beq and bne
-		6'b000100, 6'b000101:
+
+		// beq
+		6'b000100:
 		  begin
 			 RegDst    <= 0; // Indiferente
 			 Branch    <= 1;
 			 MemRead   <= 0;
 			 MemtoReg  <= 2'b00; // Indiferente
-			 ALUOp     <= 2'b01;  
+			 ALUOp     <= 2'b10;  
 			 MemWrite  <= 0;
 			 ALUSrc    <= 0;
 			 RegWrite  <= 0;
 			 Jump      <= 0;
 			 Jal       <= 0;
 		  end
-
 		  
-		 //addI
-      6'b001000: 
+	  //bne
+      6'b000101: 
 		  begin
 			 RegDst    <= 0; // Indiferente
-			 Branch    <= 0;
+			 Branch    <= 1;
 			 MemRead   <= 0;
 			 MemtoReg  <= 2'b00; // Indiferente
 			 ALUOp     <= 2'b00;  
 			 MemWrite  <= 0;
-			 ALUSrc    <= 1;
-			 RegWrite  <= 1;
+			 ALUSrc    <= 0;
+			 RegWrite  <= 0;
 			 Jump      <= 0;
 			 Jal       <= 0;
 		  end
 		  
-		 //subI
-      6'b001010: 
-		  begin
-			 RegDst    <= 0; // Indiferente
-			 Branch    <= 0;
-			 MemRead   <= 0;
-			 MemtoReg  <= 2'b00; // Indiferente
-			 ALUOp     <= 2'b00;  
-			 MemWrite  <= 0;
-			 ALUSrc    <= 1;
-			 RegWrite  <= 1;
-			 Jump      <= 0;
-			 Jal       <= 0;
-		  end
+		
 		  
 		// lui
 		6'b001111:
@@ -149,23 +151,9 @@ module ControlUnit(
 			  ALUSrc    <= 0; // Indiferente
 			  RegWrite  <= 1;
 			  Jump      <= 0;
-			  Jal       <= 0;
+			  Jal       <= 0;;
 		  end
 
-		// ori
-		6'b001101:
-		  begin
-			  RegDst    <= 0; // Indiferente
-			  Branch    <= 0;
-			  MemRead   <= 0;
-			  MemtoReg  <= 2'b00;
-			  ALUOp     <= 2'b01;
-			  MemWrite  <= 0;
-			  ALUSrc    <= 1;
-			  RegWrite  <= 1;
-			  Jump      <= 0;
-			  Jal       <= 0;
-		  end
 
       // j (jump)
 		6'b000010:
@@ -195,52 +183,7 @@ module ControlUnit(
 			 ALUSrc    <= 0;
 			 RegWrite  <= 1;
 			 Jump      <= 0;
-			 Jal       <= 0;
-		  end
-
-      // mult (multiplicação)
-		6'b011000:
-		  begin
-			 RegDst    <= 0; // Indiferente
-			 Branch    <= 0;
-			 MemRead   <= 0;
-			 MemtoReg  <= 2'b00; // Indiferente
-			 ALUOp     <= 2'b00;  
-			 MemWrite  <= 0;
-			 ALUSrc    <= 0;
-			 RegWrite  <= 0;
-			 Jump      <= 0;
-			 Jal       <= 0;
-		  end
-
-		// div (divisão)
-		6'b011010:
-		  begin
-			 RegDst    <= 0; // Indiferente
-			 Branch    <= 0;
-			 MemRead   <= 0;
-			 MemtoReg  <= 2'b00; // Indiferente
-			 ALUOp     <= 2'b01;  
-			 MemWrite  <= 0;
-			 ALUSrc    <= 0;
-			 RegWrite  <= 0;
-			 Jump      <= 0;
-			 Jal       <= 0;
-		  end
-
-		// not (negação lógica)
-		6'b011100:
-		  begin
-			 RegDst    <= 0; // Indiferente
-			 Branch    <= 0;
-			 MemRead   <= 0;
-			 MemtoReg  <= 2'b00; // Indiferente
-			 ALUOp     <= 2'b10;  
-			 MemWrite  <= 0;
-			 ALUSrc    <= 0;
-			 RegWrite  <= 1;
-			 Jump      <= 0;
-			 Jal       <= 0;
+			 Jal       <= 0;;
 		  end
 
       default:

@@ -24,7 +24,7 @@ module BankRegister(input clk, input reset,input RegWrite, input Jal,
 		
 		else if (RegWrite) registers[target_or_destination] <= write_data;
 		
-		else if (Jal) registers[31] <= pc;
+		else if (Jal == 1) registers[31] <= pc + 1;
 	end
 	
 	

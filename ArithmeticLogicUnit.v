@@ -1,18 +1,18 @@
 module ArithmeticLogicUnit
 	(
-	input Jal, 
+	
 	input [31:0] pc,
 	input [4:0] source,
 	input [31:0] read_data_1, 
 	input [31:0] read_data_2, 
 	input [3:0] ALUCtrl,
 	input shamt,
-	output reg [31:0] ALU_result, 
-	output Zero
+	input [31:0] signal_extended,
+	output reg [31:0] ALU_result 
 );
 
 	reg [63:0] HiLo;
-	always @(*) begin 
+	always @(ALUCtrl) begin 
 		case (ALUCtrl)
 			// add, addI
 			4'b0010: ALU_result <= read_data_1 + read_data_2;
@@ -32,7 +32,7 @@ module ArithmeticLogicUnit
 				end
 				
 			// and
-			4'b0000: ALU_result <= read_data_1 & read_data_2;
+			4'b1011: ALU_result <= read_data_1 & read_data_2;
 				
 			// set less than	
 			4'b0111: ALU_result <= (read_data_1 < read_data_2) ? 1 : 0;
@@ -54,7 +54,7 @@ module ArithmeticLogicUnit
 				end
 			
 			 // div
-			4'b0011:
+			4'b0011: 
 				begin
 					if (read_data_2 != 0) begin 
 					  HiLo <= read_data_1 / read_data_2;
@@ -63,16 +63,24 @@ module ArithmeticLogicUnit
 					else ALU_result <= 1;
 				end
 			
+			
+			4'b1100: //beq
+				begin
+					if (read_data_1 == read_data_2)
+						ALU_result <= signal_extended;
+					else ALU_result <= 0;
+				end
+			4'b0100: //bne
+				begin
+					if (read_data_1 != read_data_2)
+						ALU_result <= signal_extended;
+					else ALU_result <= 0;
+				end
+		  
 		  default:
 			 ALU_result <= 0;
-		endcase
-		
-		if (Jal)
-			begin
-				ALU_result <= pc + (read_data_2 << 2);
-			end
-	
+		endcase	
 	end
-	assign Zero = (ALU_result==0);
+	
 
 endmodule 
