@@ -1,0 +1,711 @@
+Analysis & Synthesis report for Mips
+Wed Jun 28 16:10:38 2023
+Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. General Register Statistics
+  9. Parameter Settings for User Entity Instance: Debounce:Debounce_inst
+ 10. Parameter Settings for User Entity Instance: GambDatapath:GambDatapath_inst|Mux_Y:mux_1
+ 11. Parameter Settings for User Entity Instance: GambDatapath:GambDatapath_inst|Mux_Y:mux_2
+ 12. Parameter Settings for User Entity Instance: GambDatapath:GambDatapath_inst|Mux_N:mux_5
+ 13. Parameter Settings for User Entity Instance: FPGA:FPGA_inst
+ 14. Port Connectivity Checks: "GambDatapath:GambDatapath_inst|PCAdder:PCAdder_inst"
+ 15. Port Connectivity Checks: "GambDatapath:GambDatapath_inst|ArithmeticLogicUnit:ArithmeticLogicUnit_inst"
+ 16. Port Connectivity Checks: "GambDatapath:GambDatapath_inst|signExtend:signExtend_inst"
+ 17. Port Connectivity Checks: "GambDatapath:GambDatapath_inst|ControlUnit:ControlUnit_inst"
+ 18. Post-Synthesis Netlist Statistics for Top Partition
+ 19. Elapsed Time Per Partition
+ 20. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2020  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                     ;
++------------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Wed Jun 28 16:10:38 2023       ;
+; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
+; Revision Name                      ; Mips                                        ;
+; Top-level Entity Name              ; Mips                                        ;
+; Family                             ; Cyclone IV E                                ;
+; Total logic elements               ; 0                                           ;
+;     Total combinational functions  ; 0                                           ;
+;     Dedicated logic registers      ; 0                                           ;
+; Total registers                    ; 0                                           ;
+; Total pins                         ; 116                                         ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 0                                           ;
+; Embedded Multiplier 9-bit elements ; 0                                           ;
+; Total PLLs                         ; 0                                           ;
++------------------------------------+---------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                              ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                           ; Setting            ; Default Value      ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                           ; EP4CE115F29C7      ;                    ;
+; Top-level entity name                                            ; Mips               ; Mips               ;
+; Family name                                                      ; Cyclone IV E       ; Cyclone V          ;
+; Use smart compilation                                            ; On                 ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                      ; Off                ; Off                ;
+; Restructure Multiplexers                                         ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                              ; Off                ; Off                ;
+; Preserve fewer node names                                        ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                    ; Enable             ; Enable             ;
+; Verilog Version                                                  ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                     ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                         ; Auto               ; Auto               ;
+; Safe State Machine                                               ; Off                ; Off                ;
+; Extract Verilog State Machines                                   ; On                 ; On                 ;
+; Extract VHDL State Machines                                      ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                       ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                   ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                          ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                        ; On                 ; On                 ;
+; Parallel Synthesis                                               ; On                 ; On                 ;
+; DSP Block Balancing                                              ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                               ; On                 ; On                 ;
+; Power-Up Don't Care                                              ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                     ; Off                ; Off                ;
+; Remove Duplicate Registers                                       ; On                 ; On                 ;
+; Ignore CARRY Buffers                                             ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                           ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                            ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                        ; Off                ; Off                ;
+; Ignore LCELL Buffers                                             ; Off                ; Off                ;
+; Ignore SOFT Buffers                                              ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                   ; Off                ; Off                ;
+; Optimization Technique                                           ; Balanced           ; Balanced           ;
+; Carry Chain Length                                               ; 70                 ; 70                 ;
+; Auto Carry Chains                                                ; On                 ; On                 ;
+; Auto Open-Drain Pins                                             ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                            ; Off                ; Off                ;
+; Auto ROM Replacement                                             ; On                 ; On                 ;
+; Auto RAM Replacement                                             ; On                 ; On                 ;
+; Auto DSP Block Replacement                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                  ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                  ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                    ; On                 ; On                 ;
+; Strict RAM Replacement                                           ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                           ; Off                ; Off                ;
+; Auto RAM Block Balancing                                         ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                ; Off                ; Off                ;
+; Auto Resource Sharing                                            ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                    ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing              ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                ; Off                ; Off                ;
+; Timing-Driven Synthesis                                          ; On                 ; On                 ;
+; Report Parameter Settings                                        ; On                 ; On                 ;
+; Report Source Assignments                                        ; On                 ; On                 ;
+; Report Connectivity Checks                                       ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                               ; Off                ; Off                ;
+; Synchronization Register Chain Length                            ; 2                  ; 2                  ;
+; Power Optimization During Synthesis                              ; Normal compilation ; Normal compilation ;
+; HDL message level                                                ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                  ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report         ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report               ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report        ; 100                ; 100                ;
+; Clock MUX Protection                                             ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                      ; Off                ; Off                ;
+; Block Design Naming                                              ; Auto               ; Auto               ;
+; SDC constraint protection                                        ; Off                ; Off                ;
+; Synthesis Effort                                                 ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal     ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                             ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                               ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                      ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                           ; On                 ; On                 ;
++------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 16          ;
+; Maximum allowed            ; 16          ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
++----------------------------+-------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                          ;
++----------------------------------+-----------------+------------------------------+---------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                      ; Library ;
++----------------------------------+-----------------+------------------------------+---------------------------------------------------+---------+
+; Mips.v                           ; yes             ; User Verilog HDL File        ; F:/intelFPGA_lite/20.1/Mips/Mips.v                ;         ;
+; PCCounter.v                      ; yes             ; User Verilog HDL File        ; F:/intelFPGA_lite/20.1/Mips/PCCounter.v           ;         ;
+; PCAdder.v                        ; yes             ; User Verilog HDL File        ; F:/intelFPGA_lite/20.1/Mips/PCAdder.v             ;         ;
+; InstructionMemory.v              ; yes             ; User Verilog HDL File        ; F:/intelFPGA_lite/20.1/Mips/InstructionMemory.v   ;         ;
+; instrucoes.txt                   ; yes             ; User File                    ; F:/intelFPGA_lite/20.1/Mips/instrucoes.txt        ;         ;
+; BankRegister.v                   ; yes             ; User Verilog HDL File        ; F:/intelFPGA_lite/20.1/Mips/BankRegister.v        ;         ;
+; ControlUnit.v                    ; yes             ; User Verilog HDL File        ; F:/intelFPGA_lite/20.1/Mips/ControlUnit.v         ;         ;
+; ArithmeticLogicUnit.v            ; yes             ; User Verilog HDL File        ; F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v ;         ;
+; signExtend.v                     ; yes             ; User Verilog HDL File        ; F:/intelFPGA_lite/20.1/Mips/signExtend.v          ;         ;
+; Mux_N.v                          ; yes             ; User Verilog HDL File        ; F:/intelFPGA_lite/20.1/Mips/Mux_N.v               ;         ;
+; ALUControl.v                     ; yes             ; User Verilog HDL File        ; F:/intelFPGA_lite/20.1/Mips/ALUControl.v          ;         ;
+; DataMemory.v                     ; yes             ; User Verilog HDL File        ; F:/intelFPGA_lite/20.1/Mips/DataMemory.v          ;         ;
+; Debounce.v                       ; yes             ; User Verilog HDL File        ; F:/intelFPGA_lite/20.1/Mips/Debounce.v            ;         ;
+; GambDatapath.v                   ; yes             ; User Verilog HDL File        ; F:/intelFPGA_lite/20.1/Mips/GambDatapath.v        ;         ;
+; FPGA.v                           ; yes             ; User Verilog HDL File        ; F:/intelFPGA_lite/20.1/Mips/FPGA.v                ;         ;
+; mux_y.v                          ; yes             ; Auto-Found Verilog HDL File  ; F:/intelFPGA_lite/20.1/Mips/mux_y.v               ;         ;
++----------------------------------+-----------------+------------------------------+---------------------------------------------------+---------+
+
+
++------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                      ;
++---------------------------------------------+--------------------+
+; Resource                                    ; Usage              ;
++---------------------------------------------+--------------------+
+;                                             ;                    ;
+; Total combinational functions               ; 0                  ;
+; Logic element usage by number of LUT inputs ;                    ;
+;     -- 4 input functions                    ; 0                  ;
+;     -- 3 input functions                    ; 0                  ;
+;     -- <=2 input functions                  ; 0                  ;
+;                                             ;                    ;
+; Logic elements by mode                      ;                    ;
+;     -- normal mode                          ; 0                  ;
+;     -- arithmetic mode                      ; 0                  ;
+;                                             ;                    ;
+; Total registers                             ; 0                  ;
+;     -- Dedicated logic registers            ; 0                  ;
+;     -- I/O registers                        ; 0                  ;
+;                                             ;                    ;
+; I/O pins                                    ; 116                ;
+;                                             ;                    ;
+; Embedded Multiplier 9-bit elements          ; 0                  ;
+;                                             ;                    ;
+; Maximum fan-out node                        ; LCD_DATA[0]~output ;
+; Maximum fan-out                             ; 1                  ;
+; Total fan-out                               ; 124                ;
+; Average fan-out                             ; 0.52               ;
++---------------------------------------------+--------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                      ;
++----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+-------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name ; Entity Name ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+-------------+--------------+
+; |Mips                      ; 0 (0)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 116  ; 0            ; |Mips               ; Mips        ; work         ;
++----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+-------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 0     ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Debounce:Debounce_inst ;
++----------------+---------+------------------------------------------+
+; Parameter Name ; Value   ; Type                                     ;
++----------------+---------+------------------------------------------+
+; DEBOUNCE_DELAY ; 1000000 ; Signed Integer                           ;
++----------------+---------+------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: GambDatapath:GambDatapath_inst|Mux_Y:mux_1 ;
++----------------+-------+----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                           ;
++----------------+-------+----------------------------------------------------------------+
+; N              ; 4     ; Signed Integer                                                 ;
+; M              ; 0     ; Signed Integer                                                 ;
++----------------+-------+----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: GambDatapath:GambDatapath_inst|Mux_Y:mux_2 ;
++----------------+-------+----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                           ;
++----------------+-------+----------------------------------------------------------------+
+; N              ; 31    ; Signed Integer                                                 ;
+; M              ; 0     ; Signed Integer                                                 ;
++----------------+-------+----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: GambDatapath:GambDatapath_inst|Mux_N:mux_5 ;
++----------------+-------+----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                           ;
++----------------+-------+----------------------------------------------------------------+
+; N              ; 31    ; Signed Integer                                                 ;
+; M              ; 1     ; Signed Integer                                                 ;
++----------------+-------+----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: FPGA:FPGA_inst ;
++-------------------+----------+------------------------------+
+; Parameter Name    ; Value    ; Type                         ;
++-------------------+----------+------------------------------+
+; CLEAR_DISPLAY     ; 00000001 ; Unsigned Binary              ;
+; SET_DDRAM_ADDRESS ; 10000000 ; Unsigned Binary              ;
+; COMMAND_DELAY     ; 10       ; Signed Integer               ;
++-------------------+----------+------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "GambDatapath:GambDatapath_inst|PCAdder:PCAdder_inst"                                                                                                                                        ;
++----------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port           ; Type  ; Severity ; Details                                                                                                                                                                            ;
++----------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; jumpLinkAdress ; Input ; Warning  ; Input port expression (27 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "jumpLinkAdress[31..27]" will be connected to GND.                         ;
+; jumpAdress     ; Input ; Warning  ; Input port expression (27 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "jumpAdress[31..27]" will be connected to GND.                             ;
+; jumpRegister   ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (27 bits) it drives.  The 5 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
++----------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "GambDatapath:GambDatapath_inst|ArithmeticLogicUnit:ArithmeticLogicUnit_inst"                                                                                                     ;
++-------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port  ; Type  ; Severity ; Details                                                                                                                                                                          ;
++-------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; shamt ; Input ; Warning  ; Input port expression (5 bits) is wider than the input port (1 bits) it drives.  The 4 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; pc    ; Input ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND.                                     ;
++-------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "GambDatapath:GambDatapath_inst|signExtend:signExtend_inst"                                                                                                          ;
++----------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port           ; Type  ; Severity ; Details                                                                                                                                                    ;
++----------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; sign_to_extend ; Input ; Warning  ; Input port expression (27 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "sign_to_extend[31..27]" will be connected to GND. ;
++----------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "GambDatapath:GambDatapath_inst|ControlUnit:ControlUnit_inst"                                              ;
++-------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port  ; Type   ; Severity ; Details                                                                                                  ;
++-------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; ALUOp ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++-------+--------+----------+----------------------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 116                         ;
+; cycloneiii_io_obuf    ; 8                           ;
+; cycloneiii_lcell_comb ; 2                           ;
+;     normal            ; 2                           ;
+;         0 data inputs ; 2                           ;
+;                       ;                             ;
+; Max LUT depth         ; 0.00                        ;
+; Average LUT depth     ; 0.00                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+    Info: Processing started: Wed Jun 28 16:10:24 2023
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Mips -c Mips
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file mips.v
+    Info (12023): Found entity 1: Mips File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file pccounter.v
+    Info (12023): Found entity 1: PCCounter File: F:/intelFPGA_lite/20.1/Mips/PCCounter.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file pcadder.v
+    Info (12023): Found entity 1: PCAdder File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file instructionmemory.v
+    Info (12023): Found entity 1: InstructionMemory File: F:/intelFPGA_lite/20.1/Mips/InstructionMemory.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file bankregister.v
+    Info (12023): Found entity 1: BankRegister File: F:/intelFPGA_lite/20.1/Mips/BankRegister.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file controlunit.v
+    Info (12023): Found entity 1: ControlUnit File: F:/intelFPGA_lite/20.1/Mips/ControlUnit.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file arithmeticlogicunit.v
+    Info (12023): Found entity 1: ArithmeticLogicUnit File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file signextend.v
+    Info (12023): Found entity 1: signExtend File: F:/intelFPGA_lite/20.1/Mips/signExtend.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file mux_n.v
+    Info (12023): Found entity 1: Mux_N File: F:/intelFPGA_lite/20.1/Mips/Mux_N.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file alucontrol.v
+    Info (12023): Found entity 1: ALUControl File: F:/intelFPGA_lite/20.1/Mips/ALUControl.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file datamemory.v
+    Info (12023): Found entity 1: DataMemory File: F:/intelFPGA_lite/20.1/Mips/DataMemory.v Line: 4
+Info (12021): Found 1 design units, including 1 entities, in source file shiftleft2.v
+    Info (12023): Found entity 1: shiftLeft2 File: F:/intelFPGA_lite/20.1/Mips/shiftLeft2.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file debounce.v
+    Info (12023): Found entity 1: Debounce File: F:/intelFPGA_lite/20.1/Mips/Debounce.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file gambdatapath.v
+    Info (12023): Found entity 1: GambDatapath File: F:/intelFPGA_lite/20.1/Mips/GambDatapath.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file fpga.v
+    Info (12023): Found entity 1: FPGA File: F:/intelFPGA_lite/20.1/Mips/FPGA.v Line: 1
+Warning (10236): Verilog HDL Implicit Net warning at shiftLeft2.v(7): created implicit net for "JumpAdress" File: F:/intelFPGA_lite/20.1/Mips/shiftLeft2.v Line: 7
+Warning (10236): Verilog HDL Implicit Net warning at GambDatapath.v(39): created implicit net for "JR" File: F:/intelFPGA_lite/20.1/Mips/GambDatapath.v Line: 39
+Info (12127): Elaborating entity "Mips" for the top level hierarchy
+Warning (10034): Output port "HEX7" at Mips.v(5) has no driver File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 5
+Warning (10034): Output port "HEX6" at Mips.v(6) has no driver File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 6
+Warning (10034): Output port "HEX5" at Mips.v(7) has no driver File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 7
+Warning (10034): Output port "HEX4" at Mips.v(8) has no driver File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 8
+Warning (10034): Output port "HEX3" at Mips.v(9) has no driver File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 9
+Warning (10034): Output port "HEX2" at Mips.v(10) has no driver File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 10
+Warning (10034): Output port "HEX1" at Mips.v(11) has no driver File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 11
+Warning (10034): Output port "HEX0" at Mips.v(12) has no driver File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 12
+Warning (10034): Output port "LEDG" at Mips.v(13) has no driver File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 13
+Warning (10034): Output port "LEDR" at Mips.v(14) has no driver File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 14
+Info (12128): Elaborating entity "Debounce" for hierarchy "Debounce:Debounce_inst" File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 23
+Warning (10230): Verilog HDL assignment warning at Debounce.v(15): truncated value with size 32 to match size of target (4) File: F:/intelFPGA_lite/20.1/Mips/Debounce.v Line: 15
+Warning (10230): Verilog HDL assignment warning at Debounce.v(21): truncated value with size 32 to match size of target (4) File: F:/intelFPGA_lite/20.1/Mips/Debounce.v Line: 21
+Info (12128): Elaborating entity "GambDatapath" for hierarchy "GambDatapath:GambDatapath_inst" File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 25
+Info (12128): Elaborating entity "PCCounter" for hierarchy "GambDatapath:GambDatapath_inst|PCCounter:PCCounter_inst" File: F:/intelFPGA_lite/20.1/Mips/GambDatapath.v Line: 17
+Info (12128): Elaborating entity "InstructionMemory" for hierarchy "GambDatapath:GambDatapath_inst|InstructionMemory:InstructionMemory_inst" File: F:/intelFPGA_lite/20.1/Mips/GambDatapath.v Line: 19
+Warning (10850): Verilog HDL warning at InstructionMemory.v(8): number of words (3) in memory file does not match the number of elements in the address range [0:23] File: F:/intelFPGA_lite/20.1/Mips/InstructionMemory.v Line: 8
+Warning (10240): Verilog HDL Always Construct warning at InstructionMemory.v(13): inferring latch(es) for variable "memory_address", which holds its previous value in one or more paths through the always construct File: F:/intelFPGA_lite/20.1/Mips/InstructionMemory.v Line: 13
+Warning (10030): Net "ram.data_a" at InstructionMemory.v(3) has no driver or initial value, using a default initial value '0' File: F:/intelFPGA_lite/20.1/Mips/InstructionMemory.v Line: 3
+Warning (10030): Net "ram.waddr_a" at InstructionMemory.v(3) has no driver or initial value, using a default initial value '0' File: F:/intelFPGA_lite/20.1/Mips/InstructionMemory.v Line: 3
+Warning (10030): Net "ram.we_a" at InstructionMemory.v(3) has no driver or initial value, using a default initial value '0' File: F:/intelFPGA_lite/20.1/Mips/InstructionMemory.v Line: 3
+Info (10041): Inferred latch for "memory_address[0]" at InstructionMemory.v(13) File: F:/intelFPGA_lite/20.1/Mips/InstructionMemory.v Line: 13
+Info (10041): Inferred latch for "memory_address[1]" at InstructionMemory.v(13) File: F:/intelFPGA_lite/20.1/Mips/InstructionMemory.v Line: 13
+Info (10041): Inferred latch for "memory_address[2]" at InstructionMemory.v(13) File: F:/intelFPGA_lite/20.1/Mips/InstructionMemory.v Line: 13
+Info (10041): Inferred latch for "memory_address[3]" at InstructionMemory.v(13) File: F:/intelFPGA_lite/20.1/Mips/InstructionMemory.v Line: 13
+Info (10041): Inferred latch for "memory_address[4]" at InstructionMemory.v(13) File: F:/intelFPGA_lite/20.1/Mips/InstructionMemory.v Line: 13
+Info (12128): Elaborating entity "ControlUnit" for hierarchy "GambDatapath:GambDatapath_inst|ControlUnit:ControlUnit_inst" File: F:/intelFPGA_lite/20.1/Mips/GambDatapath.v Line: 21
+Warning (10272): Verilog HDL Case Statement warning at ControlUnit.v(159): case item expression covers a value already covered by a previous case item File: F:/intelFPGA_lite/20.1/Mips/ControlUnit.v Line: 159
+Warning (10272): Verilog HDL Case Statement warning at ControlUnit.v(175): case item expression covers a value already covered by a previous case item File: F:/intelFPGA_lite/20.1/Mips/ControlUnit.v Line: 175
+Info (12128): Elaborating entity "ALUControl" for hierarchy "GambDatapath:GambDatapath_inst|ALUControl:ALUControl_inst" File: F:/intelFPGA_lite/20.1/Mips/GambDatapath.v Line: 23
+Warning (10272): Verilog HDL Case Statement warning at ALUControl.v(42): case item expression covers a value already covered by a previous case item File: F:/intelFPGA_lite/20.1/Mips/ALUControl.v Line: 42
+Warning (10270): Verilog HDL Case Statement warning at ALUControl.v(27): incomplete case statement has no default case item File: F:/intelFPGA_lite/20.1/Mips/ALUControl.v Line: 27
+Warning (10240): Verilog HDL Always Construct warning at ALUControl.v(9): inferring latch(es) for variable "ALUCtrl", which holds its previous value in one or more paths through the always construct File: F:/intelFPGA_lite/20.1/Mips/ALUControl.v Line: 9
+Info (10041): Inferred latch for "ALUCtrl[0]" at ALUControl.v(9) File: F:/intelFPGA_lite/20.1/Mips/ALUControl.v Line: 9
+Info (10041): Inferred latch for "ALUCtrl[1]" at ALUControl.v(9) File: F:/intelFPGA_lite/20.1/Mips/ALUControl.v Line: 9
+Info (10041): Inferred latch for "ALUCtrl[2]" at ALUControl.v(9) File: F:/intelFPGA_lite/20.1/Mips/ALUControl.v Line: 9
+Info (10041): Inferred latch for "ALUCtrl[3]" at ALUControl.v(9) File: F:/intelFPGA_lite/20.1/Mips/ALUControl.v Line: 9
+Info (12128): Elaborating entity "signExtend" for hierarchy "GambDatapath:GambDatapath_inst|signExtend:signExtend_inst" File: F:/intelFPGA_lite/20.1/Mips/GambDatapath.v Line: 25
+Warning (12125): Using design file mux_y.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: Mux_Y File: F:/intelFPGA_lite/20.1/Mips/mux_y.v Line: 1
+Info (12128): Elaborating entity "Mux_Y" for hierarchy "GambDatapath:GambDatapath_inst|Mux_Y:mux_1" File: F:/intelFPGA_lite/20.1/Mips/GambDatapath.v Line: 27
+Info (12128): Elaborating entity "Mux_Y" for hierarchy "GambDatapath:GambDatapath_inst|Mux_Y:mux_2" File: F:/intelFPGA_lite/20.1/Mips/GambDatapath.v Line: 29
+Info (12128): Elaborating entity "BankRegister" for hierarchy "GambDatapath:GambDatapath_inst|BankRegister:BankRegister_inst" File: F:/intelFPGA_lite/20.1/Mips/GambDatapath.v Line: 31
+Info (12128): Elaborating entity "ArithmeticLogicUnit" for hierarchy "GambDatapath:GambDatapath_inst|ArithmeticLogicUnit:ArithmeticLogicUnit_inst" File: F:/intelFPGA_lite/20.1/Mips/GambDatapath.v Line: 33
+Warning (10235): Verilog HDL Always Construct warning at ArithmeticLogicUnit.v(18): variable "read_data_1" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 18
+Warning (10235): Verilog HDL Always Construct warning at ArithmeticLogicUnit.v(18): variable "read_data_2" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 18
+Warning (10235): Verilog HDL Always Construct warning at ArithmeticLogicUnit.v(20): variable "source" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 20
+Warning (10235): Verilog HDL Always Construct warning at ArithmeticLogicUnit.v(20): variable "read_data_2" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 20
+Warning (10235): Verilog HDL Always Construct warning at ArithmeticLogicUnit.v(23): variable "read_data_1" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 23
+Warning (10235): Verilog HDL Always Construct warning at ArithmeticLogicUnit.v(23): variable "read_data_2" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 23
+Warning (10235): Verilog HDL Always Construct warning at ArithmeticLogicUnit.v(28): variable "read_data_1" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 28
+Warning (10235): Verilog HDL Always Construct warning at ArithmeticLogicUnit.v(28): variable "read_data_2" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 28
+Warning (10235): Verilog HDL Always Construct warning at ArithmeticLogicUnit.v(35): variable "read_data_1" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 35
+Warning (10235): Verilog HDL Always Construct warning at ArithmeticLogicUnit.v(35): variable "read_data_2" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 35
+Warning (10235): Verilog HDL Always Construct warning at ArithmeticLogicUnit.v(38): variable "read_data_1" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 38
+Warning (10235): Verilog HDL Always Construct warning at ArithmeticLogicUnit.v(38): variable "read_data_2" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 38
+Warning (10235): Verilog HDL Always Construct warning at ArithmeticLogicUnit.v(41): variable "read_data_1" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 41
+Warning (10235): Verilog HDL Always Construct warning at ArithmeticLogicUnit.v(41): variable "shamt" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 41
+Warning (10235): Verilog HDL Always Construct warning at ArithmeticLogicUnit.v(44): variable "read_data_1" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 44
+Warning (10235): Verilog HDL Always Construct warning at ArithmeticLogicUnit.v(44): variable "shamt" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 44
+Warning (10235): Verilog HDL Always Construct warning at ArithmeticLogicUnit.v(47): variable "read_data_1" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 47
+Warning (10235): Verilog HDL Always Construct warning at ArithmeticLogicUnit.v(52): variable "read_data_1" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 52
+Warning (10235): Verilog HDL Always Construct warning at ArithmeticLogicUnit.v(52): variable "read_data_2" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 52
+Warning (10235): Verilog HDL Always Construct warning at ArithmeticLogicUnit.v(53): variable "HiLo" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 53
+Warning (10235): Verilog HDL Always Construct warning at ArithmeticLogicUnit.v(59): variable "read_data_2" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 59
+Warning (10235): Verilog HDL Always Construct warning at ArithmeticLogicUnit.v(60): variable "read_data_1" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 60
+Warning (10235): Verilog HDL Always Construct warning at ArithmeticLogicUnit.v(60): variable "read_data_2" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 60
+Warning (10235): Verilog HDL Always Construct warning at ArithmeticLogicUnit.v(61): variable "HiLo" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 61
+Warning (10235): Verilog HDL Always Construct warning at ArithmeticLogicUnit.v(69): variable "read_data_1" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 69
+Warning (10235): Verilog HDL Always Construct warning at ArithmeticLogicUnit.v(69): variable "read_data_2" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 69
+Warning (10235): Verilog HDL Always Construct warning at ArithmeticLogicUnit.v(70): variable "signal_extended" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 70
+Warning (10235): Verilog HDL Always Construct warning at ArithmeticLogicUnit.v(75): variable "read_data_1" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 75
+Warning (10235): Verilog HDL Always Construct warning at ArithmeticLogicUnit.v(75): variable "read_data_2" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 75
+Warning (10235): Verilog HDL Always Construct warning at ArithmeticLogicUnit.v(76): variable "signal_extended" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 76
+Warning (10240): Verilog HDL Always Construct warning at ArithmeticLogicUnit.v(15): inferring latch(es) for variable "HiLo", which holds its previous value in one or more paths through the always construct File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[0]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[1]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[2]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[3]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[4]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[5]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[6]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[7]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[8]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[9]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[10]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[11]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[12]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[13]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[14]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[15]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[16]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[17]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[18]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[19]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[20]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[21]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[22]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[23]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[24]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[25]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[26]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[27]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[28]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[29]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[30]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (10041): Inferred latch for "HiLo[31]" at ArithmeticLogicUnit.v(15) File: F:/intelFPGA_lite/20.1/Mips/ArithmeticLogicUnit.v Line: 15
+Info (12128): Elaborating entity "DataMemory" for hierarchy "GambDatapath:GambDatapath_inst|DataMemory:DataMemory_inst" File: F:/intelFPGA_lite/20.1/Mips/GambDatapath.v Line: 35
+Info (12128): Elaborating entity "Mux_N" for hierarchy "GambDatapath:GambDatapath_inst|Mux_N:mux_5" File: F:/intelFPGA_lite/20.1/Mips/GambDatapath.v Line: 37
+Info (12128): Elaborating entity "PCAdder" for hierarchy "GambDatapath:GambDatapath_inst|PCAdder:PCAdder_inst" File: F:/intelFPGA_lite/20.1/Mips/GambDatapath.v Line: 39
+Warning (10235): Verilog HDL Always Construct warning at PCAdder.v(11): variable "Jal" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 11
+Warning (10235): Verilog HDL Always Construct warning at PCAdder.v(12): variable "jumpLinkAdress" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 12
+Warning (10235): Verilog HDL Always Construct warning at PCAdder.v(14): variable "Jump" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 14
+Warning (10235): Verilog HDL Always Construct warning at PCAdder.v(15): variable "next_pc" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 15
+Warning (10235): Verilog HDL Always Construct warning at PCAdder.v(15): variable "jumpAdress" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 15
+Warning (10230): Verilog HDL assignment warning at PCAdder.v(15): truncated value with size 38 to match size of target (32) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 15
+Warning (10235): Verilog HDL Always Construct warning at PCAdder.v(17): variable "JR" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 17
+Warning (10235): Verilog HDL Always Construct warning at PCAdder.v(18): variable "next_pc" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 18
+Warning (10235): Verilog HDL Always Construct warning at PCAdder.v(18): variable "jumpRegister" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 18
+Warning (10230): Verilog HDL assignment warning at PCAdder.v(18): truncated value with size 33 to match size of target (32) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 18
+Warning (10235): Verilog HDL Always Construct warning at PCAdder.v(20): variable "Branch" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 20
+Warning (10235): Verilog HDL Always Construct warning at PCAdder.v(21): variable "next_pc" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 21
+Warning (10235): Verilog HDL Always Construct warning at PCAdder.v(21): variable "branchAdress" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 21
+Warning (10235): Verilog HDL Always Construct warning at PCAdder.v(23): variable "Jal" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 23
+Warning (10235): Verilog HDL Always Construct warning at PCAdder.v(23): variable "Jump" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 23
+Warning (10235): Verilog HDL Always Construct warning at PCAdder.v(23): variable "JR" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 23
+Warning (10235): Verilog HDL Always Construct warning at PCAdder.v(23): variable "Branch" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 23
+Warning (10235): Verilog HDL Always Construct warning at PCAdder.v(24): variable "next_pc" is read inside the Always Construct but isn't in the Always Construct's Event Control File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 24
+Warning (10240): Verilog HDL Always Construct warning at PCAdder.v(7): inferring latch(es) for variable "adress_added", which holds its previous value in one or more paths through the always construct File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[0]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[1]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[2]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[3]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[4]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[5]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[6]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[7]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[8]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[9]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[10]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[11]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[12]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[13]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[14]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[15]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[16]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[17]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[18]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[19]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[20]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[21]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[22]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[23]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[24]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[25]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[26]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[27]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[28]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[29]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[30]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (10041): Inferred latch for "adress_added[31]" at PCAdder.v(7) File: F:/intelFPGA_lite/20.1/Mips/PCAdder.v Line: 7
+Info (12128): Elaborating entity "FPGA" for hierarchy "FPGA:FPGA_inst" File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 27
+Warning (10855): Verilog HDL warning at FPGA.v(59): initial value for variable lcd_data_internal should be constant File: F:/intelFPGA_lite/20.1/Mips/FPGA.v Line: 59
+Warning (12241): 4 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning (13032): The following tri-state nodes are fed by constants
+    Warning (13033): The pin "LCD_DATA[7]" is fed by GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 17
+    Warning (13033): The pin "LCD_DATA[6]" is fed by GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 17
+    Warning (13033): The pin "LCD_DATA[5]" is fed by GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 17
+    Warning (13033): The pin "LCD_DATA[4]" is fed by GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 17
+    Warning (13033): The pin "LCD_DATA[3]" is fed by GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 17
+    Warning (13033): The pin "LCD_DATA[2]" is fed by GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 17
+    Warning (13033): The pin "LCD_DATA[1]" is fed by GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 17
+    Warning (13033): The pin "LCD_DATA[0]" is fed by GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 17
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "LCD_ON" is stuck at VCC File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 4
+    Warning (13410): Pin "LCD_BLON" is stuck at VCC File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 4
+    Warning (13410): Pin "LCD_RW" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 4
+    Warning (13410): Pin "LCD_EN" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 4
+    Warning (13410): Pin "LCD_RS" is stuck at VCC File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 4
+    Warning (13410): Pin "HEX7[0]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 5
+    Warning (13410): Pin "HEX7[1]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 5
+    Warning (13410): Pin "HEX7[2]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 5
+    Warning (13410): Pin "HEX7[3]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 5
+    Warning (13410): Pin "HEX7[4]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 5
+    Warning (13410): Pin "HEX7[5]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 5
+    Warning (13410): Pin "HEX7[6]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 5
+    Warning (13410): Pin "HEX6[0]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 6
+    Warning (13410): Pin "HEX6[1]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 6
+    Warning (13410): Pin "HEX6[2]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 6
+    Warning (13410): Pin "HEX6[3]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 6
+    Warning (13410): Pin "HEX6[4]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 6
+    Warning (13410): Pin "HEX6[5]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 6
+    Warning (13410): Pin "HEX6[6]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 6
+    Warning (13410): Pin "HEX5[0]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 7
+    Warning (13410): Pin "HEX5[1]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 7
+    Warning (13410): Pin "HEX5[2]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 7
+    Warning (13410): Pin "HEX5[3]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 7
+    Warning (13410): Pin "HEX5[4]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 7
+    Warning (13410): Pin "HEX5[5]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 7
+    Warning (13410): Pin "HEX5[6]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 7
+    Warning (13410): Pin "HEX4[0]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 8
+    Warning (13410): Pin "HEX4[1]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 8
+    Warning (13410): Pin "HEX4[2]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 8
+    Warning (13410): Pin "HEX4[3]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 8
+    Warning (13410): Pin "HEX4[4]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 8
+    Warning (13410): Pin "HEX4[5]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 8
+    Warning (13410): Pin "HEX4[6]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 8
+    Warning (13410): Pin "HEX3[0]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 9
+    Warning (13410): Pin "HEX3[1]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 9
+    Warning (13410): Pin "HEX3[2]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 9
+    Warning (13410): Pin "HEX3[3]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 9
+    Warning (13410): Pin "HEX3[4]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 9
+    Warning (13410): Pin "HEX3[5]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 9
+    Warning (13410): Pin "HEX3[6]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 9
+    Warning (13410): Pin "HEX2[0]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 10
+    Warning (13410): Pin "HEX2[1]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 10
+    Warning (13410): Pin "HEX2[2]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 10
+    Warning (13410): Pin "HEX2[3]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 10
+    Warning (13410): Pin "HEX2[4]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 10
+    Warning (13410): Pin "HEX2[5]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 10
+    Warning (13410): Pin "HEX2[6]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 10
+    Warning (13410): Pin "HEX1[0]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 11
+    Warning (13410): Pin "HEX1[1]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 11
+    Warning (13410): Pin "HEX1[2]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 11
+    Warning (13410): Pin "HEX1[3]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 11
+    Warning (13410): Pin "HEX1[4]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 11
+    Warning (13410): Pin "HEX1[5]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 11
+    Warning (13410): Pin "HEX1[6]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 11
+    Warning (13410): Pin "HEX0[0]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 12
+    Warning (13410): Pin "HEX0[1]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 12
+    Warning (13410): Pin "HEX0[2]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 12
+    Warning (13410): Pin "HEX0[3]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 12
+    Warning (13410): Pin "HEX0[4]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 12
+    Warning (13410): Pin "HEX0[5]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 12
+    Warning (13410): Pin "HEX0[6]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 12
+    Warning (13410): Pin "LEDG[0]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 13
+    Warning (13410): Pin "LEDG[1]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 13
+    Warning (13410): Pin "LEDG[2]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 13
+    Warning (13410): Pin "LEDG[3]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 13
+    Warning (13410): Pin "LEDG[4]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 13
+    Warning (13410): Pin "LEDG[5]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 13
+    Warning (13410): Pin "LEDG[6]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 13
+    Warning (13410): Pin "LEDG[7]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 13
+    Warning (13410): Pin "LEDG[8]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 13
+    Warning (13410): Pin "LEDR[0]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 14
+    Warning (13410): Pin "LEDR[1]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 14
+    Warning (13410): Pin "LEDR[2]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 14
+    Warning (13410): Pin "LEDR[3]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 14
+    Warning (13410): Pin "LEDR[4]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 14
+    Warning (13410): Pin "LEDR[5]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 14
+    Warning (13410): Pin "LEDR[6]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 14
+    Warning (13410): Pin "LEDR[7]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 14
+    Warning (13410): Pin "LEDR[8]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 14
+    Warning (13410): Pin "LEDR[9]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 14
+    Warning (13410): Pin "LEDR[10]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 14
+    Warning (13410): Pin "LEDR[11]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 14
+    Warning (13410): Pin "LEDR[12]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 14
+    Warning (13410): Pin "LEDR[13]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 14
+    Warning (13410): Pin "LEDR[14]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 14
+    Warning (13410): Pin "LEDR[15]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 14
+    Warning (13410): Pin "LEDR[16]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 14
+    Warning (13410): Pin "LEDR[17]" is stuck at GND File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 14
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 20 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "CLOCK_50" File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 2
+    Warning (15610): No output dependent on input pin "btn_in" File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 2
+    Warning (15610): No output dependent on input pin "switches[0]" File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 3
+    Warning (15610): No output dependent on input pin "switches[1]" File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 3
+    Warning (15610): No output dependent on input pin "switches[2]" File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 3
+    Warning (15610): No output dependent on input pin "switches[3]" File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 3
+    Warning (15610): No output dependent on input pin "switches[4]" File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 3
+    Warning (15610): No output dependent on input pin "switches[5]" File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 3
+    Warning (15610): No output dependent on input pin "switches[6]" File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 3
+    Warning (15610): No output dependent on input pin "switches[7]" File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 3
+    Warning (15610): No output dependent on input pin "switches[8]" File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 3
+    Warning (15610): No output dependent on input pin "switches[9]" File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 3
+    Warning (15610): No output dependent on input pin "switches[10]" File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 3
+    Warning (15610): No output dependent on input pin "switches[11]" File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 3
+    Warning (15610): No output dependent on input pin "switches[12]" File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 3
+    Warning (15610): No output dependent on input pin "switches[13]" File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 3
+    Warning (15610): No output dependent on input pin "switches[14]" File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 3
+    Warning (15610): No output dependent on input pin "switches[15]" File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 3
+    Warning (15610): No output dependent on input pin "switches[16]" File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 3
+    Warning (15610): No output dependent on input pin "switches[17]" File: F:/intelFPGA_lite/20.1/Mips/Mips.v Line: 3
+Info (21057): Implemented 116 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 20 input pins
+    Info (21059): Implemented 88 output pins
+    Info (21060): Implemented 8 bidirectional pins
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 197 warnings
+    Info: Peak virtual memory: 4745 megabytes
+    Info: Processing ended: Wed Jun 28 16:10:38 2023
+    Info: Elapsed time: 00:00:14
+    Info: Total CPU time (on all processors): 00:00:39
+
+
