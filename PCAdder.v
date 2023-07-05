@@ -9,13 +9,13 @@ module PCAdder(input [31:0]adress_to_add, output reg [31:0]adress_added, input J
 			next_pc <= adress_to_add + 1;
 		
 		if(Jal)
-			adress_added <= 1 + jumpLinkAdress;
+			adress_added <= jumpLinkAdress;
 		
 		if(Jump) 
-			adress_added <= next_pc + jumpAdress;
+			adress_added <= {next_pc[31:28], jumpAdress, 2'b00};
 		
 		if(JR)
-			adress_added <= jumpRegister;
+			adress_added <= {next_pc[31:28], jumpRegister, 2'b00};;
 		
 		if(Branch)
 			adress_added <= next_pc + branchAdress;
