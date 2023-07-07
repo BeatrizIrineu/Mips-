@@ -12,7 +12,8 @@ module ArithmeticLogicUnit
 );
 
 	reg [63:0] HiLo;
-	always @(ALUCtrl) begin 
+	always @(ALUCtrl) 
+	begin 
 		case (ALUCtrl)
 			// add, addI
 			4'b0010: ALU_result <= read_data_1 + read_data_2;
@@ -68,18 +69,19 @@ module ArithmeticLogicUnit
 				begin
 					if (read_data_1 == read_data_2)
 						ALU_result <= signal_extended;
-					else ALU_result <= 0;
+					else ALU_result <= -1;
 				end
 			4'b0100: //bne
 				begin
 					if (read_data_1 != read_data_2)
 						ALU_result <= signal_extended;
-					else ALU_result <= 0;
+					else ALU_result <= -1;
 				end
 		  
 		  default:
 			 ALU_result <= 0;
 		endcase	
+
 	end
 	
 
