@@ -1,47 +1,36 @@
 module Mips (
-		input CLOCK_50, 
-		input pause, 
-		input reset, 
-		output Branch, MemRead, MemWrite, ALUSrc, RegWrite,RegDst, Jump, Jal,
-		output [31:0] ALU_result, read_register_1,read_register_2, instruction, signal_extended,pc, adress_pc_out,
-		output [3:0] ALUCtrl,
-		output [1:0] MemtoReg
+	input CLOCK_50,
+	input sw0, sw1, sw2, sw3, sw4, sw5, sw6, sw7, sw8,   
+	output [6:0] HEX7,
+	output [6:0] HEX6,
+	output [6:0] HEX5,
+	output [6:0] HEX4,
+	output [6:0] HEX3,
+	output [6:0] HEX2,
+	output [6:0] HEX1,
+	output [6:0] HEX0,
+	output clk, print, in,
+	output [3:0] input_register,
+	output [31:0] print_register, read_register_1, read_register_2,ALU_result, instruction, adress_pc_out, 
+	output Branch, MemRead, MemWrite, ALUSrc, RegWrite, Jump, Jal,
+	output [1:0] MemtoReg, bits_16_26, RegDst,
+	output [3:0] ALUCtrl,
+	output [4:0]target_or_destination,
+	output [31:0] read_data, write_data, read_data_2, signal_extended, pc
 		
 );
-
-//	wire Branch, MemRead, MemWrite, ALUSrc, RegWrite, RegDst, Jump;
+	//wire [31:0] ALU_result, read_register_1, read_register_2;
+	//wire [16:0] input_register;
 	
-//	wire [1:0] ALUOp, MemtoReg, Jal;
 	
-//	wire [3:0] ALUCtrl;
+	FrequencyDivider FrequencyDivider_inst(.clk_in(CLOCK_50),.clk_out(clk));
 	
-	wire [4:0]target_or_destination;
+	Reader Reader_inst(.in(in), .sw0(sw0), .sw1(sw1), .sw2(sw2), .sw3(sw3), .input_register(input_register));
 	
-	wire [31:0] read_data, write_data, read_data_2;
-
-	PCCounter PCCounter_inst(.clk(CLOCK_50),.pause(pause),.reset(reset),.adress_pc_in(pc),.adress_pc_out(adress_pc_out));
+	GambDatapath GambDatapath_inst(.clk(clk), .reset(sw6), .pause(sw7), .enter(sw8), .input_register(input_register), .print_register(print_register), .read_register_1(read_register_1), .read_register_2(read_register_2), .ALU_result(ALU_result), .instruction(instruction), .adress_pc_out(adress_pc_out), .print(print), .in(in), .Branch(Branch), .MemRead(MemRead), .MemWrite(MemWrite), .ALUSrc(ALUSrc), .RegWrite(RegWrite), .Jump(Jump), .Jal(Jal), .MemtoReg(MemtoReg), .bits_16_26(bits_16_26), .RegDst(RegDst), .ALUCtrl(ALUCtrl), .target_or_destination(target_or_destination), .read_data(read_data), .write_data(write_data), .read_data_2(read_data_2), .signal_extended(signal_extended), .pc(pc));
 	
-	InstructionMemory InstructionMemory_inst(.adress_memory_in(adress_pc_out), .pause(pause), .instruction(instruction));
+	FPGA FPGA_inst( .clk(clk), .print(print), .in(in), .read_register_1(read_register_1), .read_register_2(read_register_2), .print_register(print_register), .pc(pc),  .opcode(instruction[31:26]), .funct(instruction[5:0]), .HEX0(HEX0), .HEX1(HEX1), .HEX2(HEX2), .HEX3(HEX3), .HEX4(HEX4), .HEX5(HEX5), .HEX6(HEX6), .HEX7(HEX7));
 	
-	ControlUnit ControlUnit_inst(.opcode(instruction[31:26]), .funct(instruction[5:0]), .RegDst(RegDst), .Branch(Branch), .MemRead(MemRead), .MemtoReg(MemtoReg),.MemWrite(MemWrite), .ALUSrc(ALUSrc), .RegWrite(RegWrite), .Jump(Jump), .Jal(Jal));
-	
-	ALUControl ALUControl_inst(.opcode(instruction[31:26]), .funct(instruction[5:0]), .shamt(instruction[10:6]),  .ALUCtrl(ALUCtrl));
-	
-	signExtend signExtend_inst(.Jal(Jal), .sign_to_extend(instruction[26:0]), .signal_extended(signal_extended));
-	
-	Mux_Y #(4,0) mux_1(.flag(RegDst), .input_1(instruction[20:16]), .input_2(instruction[15:11]), .mux_output(target_or_destination));
-	
-   Mux_Y #(31,0) mux_2(.flag(ALUSrc), .input_1(read_register_2), .input_2(signal_extended), .mux_output(read_data_2));
-	
-	BankRegister BankRegister_inst(.clk(CLOCK_50), .reset(reset), .RegWrite(RegWrite), .Jal(Jal), .source(instruction[25:21]), .target(instruction[20:16]), .target_or_destination(target_or_destination), .read_register_1(read_register_1), .read_register_2(read_register_2), .write_data(write_data), .pc(adress_pc_out));
-	
-	ArithmeticLogicUnit ArithmeticLogicUnit_inst(.source(instruction[25:21]), .read_data_1(read_register_1), .read_data_2(read_data_2), .ALUCtrl(ALUCtrl), .shamt(instruction[10:6]), .signal_extended(signal_extended), .ALU_result(ALU_result));
-	
-	DataMemory DataMemory_inst(.write_data_ram(read_register_2), .address(ALU_result[31:0]), .MemWrite(MemWrite), .MemRead(MemRead), .clk(CLOCK_50), .read_data(read_data));
-	
-	Mux_N #(31,1) mux_5(.flag(MemtoReg), .input_1(ALU_result), .input_2(read_data), .input_3(signal_extended), .mux_output(write_data));
-	
-	PCAdder PCAdder_inst(.adress_to_add(adress_pc_out), .adress_added(pc), .Jal(Jal), .Jump(Jump), .JR(JR), .Branch(Branch), .jumpLinkAdress(signal_extended), .jumpAdress(signal_extended), .jumpRegister(read_register_1), .branchAdress(ALU_result));
 	
 	
 endmodule
