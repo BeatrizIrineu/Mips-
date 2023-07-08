@@ -14,16 +14,16 @@ module FPGA (
 );
  
 
- always @(clk, pc, in)
+ always @(posedge clk)
 	begin 
 	
 	if (pc == 1)
 	begin 
 		HEX0 =  7'b1000000; // 0
 		HEX1 =  7'b1000000; // 0
-		HEX2 =  7'b1000000; // 0
-		HEX3 =  7'b1111001; // 0
-		HEX4 =  7'b1111001; // 0
+		HEX2 =  7'b1111001; // 0
+		HEX3 =  7'b1000000; // 0
+		HEX4 =  7'b1000000; // 0
 		HEX5 =  7'b1000000; // 0
 		HEX6 =  7'b1000000; // 0
 		HEX7 =  7'b1000000; // 0
@@ -42,7 +42,8 @@ module FPGA (
 			HEX2 =  7'b1111001; // 1
 			HEX3 =  7'b1111001; // 1
 		end
-		else if(in != 1)
+		
+		else 
 		begin
 			case (first_digit_pc)
 				0: HEX3 =  7'b1000000; // 0
@@ -106,8 +107,8 @@ module FPGA (
 			endcase
 
 			case (second_digit_register_1)
-				0: HEX6 =  7'b1000000; // 0
-				1: HEX6 =  7'b1111001; // 1
+				0: HEX6 = 7'b1000000; // 0
+				1: HEX6 = 7'b1111001; // 1
 				2: HEX6 = 7'b0100100; // 2
 				3: HEX6 = 7'b0110000; // 3
 				4: HEX6 = 7'b0011001; // 4
